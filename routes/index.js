@@ -24,17 +24,16 @@ router.post("/mail", async (req, res) => {
     const { name, email, subject, message } = req.body;
 
     const transporter = nodemailer.createTransport({
-      host: "smtp.ethereal.email",
-      port: 587,
+      service: "gmail",
       auth: {
-        user: "aaliyah.denesik@ethereal.email",
-        pass: "BRAjhbe5fNREgZp7mt",
+        user: "myassa92@gmail.com",
+        pass: "asaeqndzxtayfscr",
       },
     });
 
     const mailOptions = {
       from: email,
-      to: "myassa92@gmail.com",
+      to: "spukar133@gmail.com",
       subject: subject,
       text: `From: ${name}\nEmail: ${email}\nMessage: ${message}`,
     };
