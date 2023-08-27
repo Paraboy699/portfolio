@@ -11,6 +11,7 @@ app.set("views", "./views");
 
 // Parse JSON bodies
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Use routes from the "./routes/index" module
 app.use("/", routes);
