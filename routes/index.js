@@ -1,16 +1,19 @@
 const express = require("express");
 const router = express.Router();
 
-// GET route for the root URL
 router.get("/", (req, res) => {
   res.send("Hello World");
 });
 
-// GET route with parameters
-router.get("/:name/:roll", (req, res) => {
-  const { name, roll } = req.params;
-  console.log(`Your name is ${name} and your roll number is ${roll}`);
-  res.send(`Name: ${name}, Roll: ${roll}`);
+router.get("/:name", (req, res) => {
+  const { name } = req.params;
+  console.log(`Your name is ${name}`);
+  res.send(`Your name is ${name}`);
+});
+
+router.post("/", (req, res) => {
+  console.log("Received POST request");
+  res.send("Hello World");
 });
 
 module.exports = router;
