@@ -2,7 +2,19 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.send("Hello GET World");
+  res.render("index");
+});
+
+router.get("/contact", (req, res) => {
+  res.render("contact");
+});
+
+router.get("/portfolio", (req, res) => {
+  res.render("portfolio");
+});
+
+router.get("/service", (req, res) => {
+  res.render("service");
 });
 
 router.get("/:name", (req, res) => {
