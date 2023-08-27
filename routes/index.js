@@ -2,18 +2,17 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.send("Hello World");
+  res.send("Hello GET World");
 });
 
 router.get("/:name", (req, res) => {
   const { name } = req.params;
-  console.log(`Your name is ${name}`);
-  res.send(`Your name is ${name}`);
+  res.render("index", { name: name ? name : "" });
 });
 
 router.post("/", (req, res) => {
   console.log("Received POST request");
-  res.send("Hello World");
+  res.send("Hello POST World");
 });
 
 module.exports = router;
