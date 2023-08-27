@@ -20,7 +20,7 @@ router.get("/service", (req, res) => {
 
 router.post("/mail", async (req, res) => {
   try {
-    console.log(req);
+    console.log(req.body);
     const { name, email, subject, message } = req.body;
 
     const transporter = nodemailer.createTransport({
