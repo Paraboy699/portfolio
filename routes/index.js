@@ -1,48 +1,19 @@
 const express = require("express");
 const router = express.Router();
-const nodemailer = require("nodemailer");
+const { sendEmail } = require("../services/mailService");
 
-router.get("/", (req, res) => {
-  res.render("index");
-});
-
-router.get("/contact", (req, res) => {
-  res.render("contact");
-});
-
-router.get("/portfolio", (req, res) => {
-  res.render("portfolio");
-});
-
-router.get("/service", (req, res) => {
-  res.render("service");
-});
+router.get("/", (req, res) => res.render("index"));
+router.get("/contact", (req, res) => res.render("contact"));
+router.get("/portfolio", (req, res) => res.render("portfolio"));
+router.get("/service", (req, res) => res.render("service"));
 
 router.post("/mail", async (req, res) => {
-  try {
-    console.log(req.body);
-    const { name, email, subject, message } = req.body;
+  const { name, email, subject, message } = req.body;
+  const success = await sendEmail({ name, email, subject, message });
 
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: "myassa92@gmail.com",
-        pass: "asaeqndzxtayfscr",
-      },
-    });
-
-    const mailOptions = {
-      from: email,
-      to: "spukar133@gmail.com",
-      subject: subject,
-      text: `From: ${name}\nEmail: ${email}\nMessage: ${message}`,
-    };
-
-    const info = await transporter.sendMail(mailOptions);
-    console.log("Email sent: " + info.response);
+  if (success) {
     res.send("Email sent successfully!");
-  } catch (error) {
-    console.error(error);
+  } else {
     res.status(500).send("Error sending email.");
   }
 });
